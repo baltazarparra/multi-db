@@ -1,7 +1,7 @@
 // npm i sequelize pg-hstore pg
 const Sequelize = require('sequelize')
 const driver = new Sequelize(
-    'herois',
+    'heroes',
     'baltazarparra',
     'mypassword',
     {
@@ -13,7 +13,7 @@ const driver = new Sequelize(
 )
 
 async function main() {
-    const herois = driver.define('herois', {
+    const Herois = driver.define('herois', {
         id: {
             type: Sequelize.INTEGER,
             required: true,
@@ -28,7 +28,22 @@ async function main() {
             type: Sequelize.STRING,
             required: true
         }
+    }, {
+        tableName: 'TB_HEROIS',
+        freezeTableName: false,
+        timestamps: false
     })
+
+    await Herois.sync()
+    
+    // await Herois.create({
+    //     nome: 'Sua mae',
+    //     poder: 'Danadinha'
+    // })
+
+    const result = await Herois.findAll({raw: true})
+
+    console.log(result)
 }
 
 main()
