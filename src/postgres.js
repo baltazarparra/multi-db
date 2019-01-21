@@ -1,16 +1,4 @@
 // npm i sequelize pg-hstore pg
-const Sequelize = require('sequelize')
-const driver = new Sequelize(
-    'heroes',
-    'baltazarparra',
-    'mypassword',
-    {
-        host: 'localhost',
-        dialect: 'postgres',
-        quoteIdentifiers: false,
-        operatorsAliases: false
-    }
-)
 
 async function main() {
     const Herois = driver.define('herois', {
